@@ -21,8 +21,8 @@ namespace linq
         {
         }
 
-        LinqEntity<ContainerType> select(std::function<bool(typename ContainerType::value_type)> selectFunction) const;
-        LinqEntity<ContainerType> select(typename ContainerType::value_type selectElement) const;
+        LinqEntity<ContainerType> where(std::function<bool(typename ContainerType::value_type)> selectFunction) const;
+        LinqEntity<ContainerType> where(typename ContainerType::value_type selectElement) const;
 
         virtual LinqBase<ContainerType> forceEvaluate() const;
 
@@ -33,9 +33,9 @@ namespace linq
     protected:
         const ContainerType &mBaseContainer;
     };
-    
+
     template <typename ContainerType>
-    LinqEntity<ContainerType> LinqBase<ContainerType>::select(std::function<bool(typename ContainerType::value_type)> selectFunction) const
+    LinqEntity<ContainerType> LinqBase<ContainerType>::where(std::function<bool(typename ContainerType::value_type)> selectFunction) const
     {
         OutputContainerType outputContainer;
 
@@ -51,7 +51,7 @@ namespace linq
     }
 
     template <typename ContainerType>
-    LinqEntity<ContainerType> LinqBase<ContainerType>::select(typename ContainerType::value_type selectElement) const
+    LinqEntity<ContainerType> LinqBase<ContainerType>::where(typename ContainerType::value_type selectElement) const
     {
         OutputContainerType outputContainer;
 
