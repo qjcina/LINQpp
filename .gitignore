@@ -72,6 +72,8 @@ Thumbs.db
 *.exe
 
 .cmake
-build/
 .vscode
+
+build/*
+external/*
 
