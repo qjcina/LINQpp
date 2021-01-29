@@ -6,3 +6,42 @@ LINQ implementation in C++
 
 ## About
 LINQ is .NET platform component which simplifies data processing by introducing set of query-like expressions. LINQpp is an attempt to bring this feature into C++ world.
+
+## Usage
+### Project
+LINQpp is header-only library. All you have to do to use it is to include `src/LINQpp` folder in your project. 
+Project in this repository contains 2 subdirectories: example (`src/main.cpp`) and unit tests. You can compile and check them out as well for better understanding of the project.
+
+### LINQpp philosophy
+LINQpp under the hood tries to aviod copying your data. Library provides 2 entry points: `linq::from` and `linq::copyFrom`. First one holds reference to provided container, any operation that can cause iterator invalidation is forbidden and can cause unexpected behaviour. Second one holds copy of your whole container in the root of all operations, so if you want to avoid copying whole container you should use `linq::from`.  
+At any point you can evaluate whole expression to create new root or output container by assigning it to valid container with assignment operator or by calling `forceEvaluate`.
+
+### Query Operators
+LINQpp is still in progres, so not all of LINQ query operators are available.
+
+❌ Select  
+✔️ Where - filters out not matching elements
+```c++
+linq::from(array)->where("element");                                              // compare with literal value
+linq::from(array)->where([](const auto& element){ return element.size() > 2; });  // compare with lambda expression
+```  
+❌ SelectMany  
+❌ Sum / Min / Max / Average  
+❌ Aggregate  
+❌ Join / GroupJoin  
+❌ Take / TakeWhile  
+❌ Skip / SkipWhile  
+❌ OfType  
+❌ Concat  
+❌ OrderBy / ThenBy  
+❌ Reverse  
+❌ GroupBy  
+❌ Distinct  
+❌ Union / Intersect / Except  
+❌ SequenceEqual  
+❌ First / FirstOrDefault / Last / LastOrDefault  
+❌ Single  
+❌ ElementAt  
+❌ Any / All  
+❌ Contains  
+❌ Count  
