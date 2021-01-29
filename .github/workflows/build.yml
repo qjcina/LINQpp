@@ -57,7 +57,7 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: bash
       continue-on-error: true
-      run: ${{github.workspace}}/test_executable --gtest_output="xml"
+      run: ${{github.workspace}}/Linqplusplus_test --gtest_output="xml"
    
     - name: Check Test Success
       working-directory: ${{github.workspace}}/build
