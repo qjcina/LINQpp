@@ -59,4 +59,4 @@ jobs:
     - name: Check Test Success2
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: echo "$TEST_RESULT"
+      run: echo "${TEST_RESULT}"
