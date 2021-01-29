@@ -51,8 +51,8 @@ jobs:
       shell: bash
       run: |
         if cat test_detail.xml | grep FAIL; then
-            echo "do this"
+            "TEST_FAIL" >> $TEST_RESULT
         else
-            echo "do that"
+            "TEST_SUCCESS" >> $TEST_RESULT
         fi
 
