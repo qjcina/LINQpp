@@ -51,7 +51,7 @@ jobs:
     - name: cppcheck
       uses: deep5050/cppcheck-action@main
       with:
-        exclude_check: build/* test/* external*
+        args: -ibuild/ -itest/ -iexternal/
         force_language: c++
         github_token: ${{ secrets.GITHUB_TOKEN }}
                   
