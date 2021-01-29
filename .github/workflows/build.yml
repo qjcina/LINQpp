@@ -52,11 +52,11 @@ jobs:
       shell: bash
       run: |
         if cat test_detail.xml | grep "failure type"; then
-            echo "TEST_RESULT=FAIL" >> $GITHUB_ENV
+            echo "TEST_RESULT=failing" >> $GITHUB_ENV
             echo "BADGE_COLOR=red" >> $GITHUB_ENV
         else
-            echo "TEST_RESULT=SUCCESS" >> $GITHUB_ENV
-            echo "BADGE_COLOR=green" >> $GITHUB_ENV
+            echo "TEST_RESULT=passing" >> $GITHUB_ENV
+            echo "BADGE_COLOR=#34D058" >> $GITHUB_ENV
         fi
         
     - name: Create Badge
