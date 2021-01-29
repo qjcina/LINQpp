@@ -22,12 +22,14 @@ namespace linq
     class LinqObject : public std::shared_ptr<BaseType>
     {
     public:
-        LinqObject(const std::shared_ptr<BaseType> &base)
-            : std::shared_ptr<BaseType>(base)
+        template <typename InputBaseType>
+        LinqObject(const std::shared_ptr<InputBaseType> &base)
+            : std::shared_ptr<BaseType>(castBaseType(base))
         {
         }
 
-        LinqObject(std::shared_ptr<BaseType> &&base)
+        template <typename InputBaseType>
+        LinqObject(std::shared_ptr<InputBaseType> &&base)
             : std::shared_ptr<BaseType>(std::move(base))
         {
         }
@@ -37,7 +39,7 @@ namespace linq
         template <typename ContainerType = typename BaseType::ValueType, std::enable_if_t<traits::IsHandledContainer<ContainerType>::value, bool> = true>
         operator ContainerType() const
         {
-            if (const auto *internalPointer = get())
+            if (const auto *internalPointer = this->get())
             {
                 // object exists, can safely evaluate
                 return internalPointer->operator ContainerType();
@@ -52,6 +54,16 @@ namespace linq
                 // object doesn't exist, and pointer couldn't return empty container
                 abort();
             }
+        }
+
+    private:
+        template <typename I>
+        std::shared_ptr<BaseType> castBaseType(const std::shared_ptr<I> &input)
+        {
+            if constexpr (std::is_same_v<I, BaseType>())
+                return input;
+
+            return std::static_pointer_cast<BaseType>(input);
         }
     };
 

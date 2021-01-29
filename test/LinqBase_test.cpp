@@ -27,6 +27,8 @@ TEST(LinqBaseTest, CopyFrom_ExpectSuccessIfBaseIsModified)
     const std::vector<int32_t> outputVector = output;
 
     EXPECT_THAT(outputVector, testing::ElementsAre(3));
+    
+    EXPECT_TRUE(false);
 }
 
 TEST(LinqBaseTest, From_ExpectSuccessIfBaseIsModifiedAfterEvaluation)

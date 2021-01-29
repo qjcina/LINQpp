@@ -1,4 +1,4 @@
-name: CMake
+name: Build
 
 on: [push]
 
@@ -16,7 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
+      
+    - name: Checkout submodules
+      uses: textbook/git-checkout-submodule-action@2.1.1
+      
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
       # We'll use this as our working directory for all subsequent commands
@@ -41,6 +44,27 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/build
       shell: bash
-      # Execute tests defined by the CMake configuration.  
-      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ctest -C $BUILD_TYPE
+      continue-on-error: true
+      run: ${{github.workspace}}/build/test/Linqplusplus_test --gtest_output="xml"
+
+    - name: Check Test Success
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      run: |
+        if cat test_detail.xml | grep failure; then
+            echo "TEST_RESULT=FAIL" >> $GITHUB_ENV
+            echo "BADGE_COLOR=red" >> $GITHUB_ENV
+        else
+            echo "TEST_RESULT=SUCCESS" >> $GITHUB_ENV
+            echo "BADGE_COLOR=green" >> $GITHUB_ENV
+        fi
+        
+    - name: Create Badge
+      uses: schneegans/dynamic-badges-action@v1.0.0
+      with:
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: beb364d3e95c4db5ef641cd01ff61634
+        filename: test.json
+        label: Tests
+        message: ${{ env.TEST_RESULT }}
+        color: ${{ env.BADGE_COLOR }}

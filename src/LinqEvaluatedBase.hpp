@@ -7,7 +7,7 @@ namespace linq
     {
     public:
         explicit LinqEvaluatedBase(const ContainerType &container)
-            : LinqBase(mBaseContainerCopy), mBaseContainerCopy(container)
+            : LinqBase<ContainerType>(mBaseContainerCopy), mBaseContainerCopy(container)
         {
         }
 

@@ -47,22 +47,20 @@ namespace linq
     {
         OutputContainerType outputContainer;
 
-        for (ContainerType::const_iterator i = mBaseContainer.begin(); mBaseContainer.end() != i; ++i)
+        for (typename ContainerType::const_iterator i = mBaseContainer.begin(); mBaseContainer.end() != i; ++i)
         {
             if (selectFunction(*i))
             {
                 outputContainer.push_back(i);
             }
         }
-        auto x = std::make_shared<LinqEntity<ContainerType>>(shared_from_this(), outputContainer);
-
-        return x;
+        return std::make_shared<LinqEntity<ContainerType>>(this->shared_from_this(), outputContainer);
     }
 
     template <typename ContainerType>
     LinqObjectBase<ContainerType> LinqBase<ContainerType>::where(typename ContainerType::value_type selectElement) const
     {
-        return where([&](const ContainerType::value_type &value) { return value == selectElement; });
+        return where([&](const typename ContainerType::value_type &value) { return value == selectElement; });
     }
 
     template <typename ContainerType>
