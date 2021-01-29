@@ -68,3 +68,5 @@ jobs:
         label: Tests
         message: ${{ env.TEST_RESULT }}
         color: ${{ env.BADGE_COLOR }}
+        namedLogo: GitHub
+        style: social
