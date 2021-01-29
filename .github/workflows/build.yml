@@ -69,4 +69,4 @@ jobs:
         message: ${{ env.TEST_RESULT }}
         color: ${{ env.BADGE_COLOR }}
         namedLogo: GitHub
-        style: social
+        style: flat
