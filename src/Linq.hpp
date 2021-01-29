@@ -9,15 +9,15 @@
 namespace linq
 {
     template <typename ContainerType>
-    auto from(const ContainerType &container) -> LinqBase<ContainerType>
+    auto from(const ContainerType &container) -> linq::LinqObjectBase<ContainerType>
     {
-        return LinqBase(container);
+        return std::make_shared<LinqBase<ContainerType>>(container);
     }
 
     template <typename ContainerType>
-    auto copyFrom(const ContainerType &container) -> LinqBase<ContainerType>
+    auto copyFrom(const ContainerType &container) -> linq::LinqObjectBase<ContainerType>
     {
-        return LinqEvaluatedBase(container);
+        return std::make_shared<LinqEvaluatedBase<ContainerType>>(container);
     }
 
 }; // namespace linq
