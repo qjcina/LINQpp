@@ -52,8 +52,10 @@ jobs:
       run: |
         if cat test_detail.xml | grep FAIL; then
             echo "TEST_RESULT=FAIL" >> $GITHUB_ENV
+            echo "BADGE_COLOR=red" >> $GITHUB_ENV
         else
             echo "TEST_RESULT=SUCCESS" >> $GITHUB_ENV
+            echo "BADGE_COLOR=green" >> $GITHUB_ENV
         fi
         
     - name: Create Badge
@@ -62,6 +64,6 @@ jobs:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: beb364d3e95c4db5ef641cd01ff61634
         filename: test.json
-        label: Hello
-        message: World
-        color: orange
+        label: Tests
+        message: ${{ env.TEST_RESULT }}
+        color: ${{ env.BADGE_COLOR }}
