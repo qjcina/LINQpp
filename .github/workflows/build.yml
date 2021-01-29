@@ -44,4 +44,4 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: ${{github.workspace}}/build/test/$BUILD_TYPE/Linqplusplus_test --gtest_output="xml"
+      run: ${{github.workspace}}/build/test/Linqplusplus_test --gtest_output="xml"
