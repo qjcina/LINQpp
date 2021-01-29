@@ -56,12 +56,12 @@ jobs:
             echo "TEST_RESULT=SUCCESS" >> $GITHUB_ENV
         fi
         
-    - name: Test badge
-      uses: RubbaBoy/BYOB@v1.2.0
+    - name: Create Badge
+      uses: schneegans/dynamic-badges-action@v1.0.0
       with:
-        NAME: Test
-        LABEL: 'Test'
-        ICON: 'github'
-        STATUS: echo "${TEST_RESULT}"
-        COLOR: red
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: beb364d3e95c4db5ef641cd01ff61634
+        filename: test.json
+        label: Hello
+        message: World
+        color: orange
