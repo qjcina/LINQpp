@@ -33,7 +33,8 @@ namespace linq
     template <typename ContainerType>
     LinqObjectBase<ContainerType> LinqEntity<ContainerType>::forceEvaluate() const
     {
-        return std::make_shared<LinqEvaluatedBase<ContainerType>>(operator ContainerType());
+        return std::static_pointer_cast<LinqBase<ContainerType>>(
+            std::make_shared<LinqEvaluatedBase<ContainerType>>(operator ContainerType()));
     }
 
     template <typename ContainerType>
