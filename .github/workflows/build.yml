@@ -51,9 +51,9 @@ jobs:
       shell: bash
       run: |
         if cat test_detail.xml | grep FAIL; then
-            "TEST_FAIL" >> $TEST_RESULT
+            export TEST_RESULT="TEST_FAIL"
         else
-            "TEST_SUCCESS" >> $TEST_RESULT
+            export TEST_RESULT="TEST_SUCCESS"
         fi
         
     - name: Check Test Success2
