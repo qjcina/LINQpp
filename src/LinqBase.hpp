@@ -54,8 +54,7 @@ namespace linq
                 outputContainer.push_back(i);
             }
         }
-        return std::static_pointer_cast<LinqBase<ContainerType>>(
-            std::make_shared<LinqEntity<ContainerType>>(this->shared_from_this(), outputContainer));
+        return std::make_shared<LinqEntity<ContainerType>>(this->shared_from_this(), outputContainer);
     }
 
     template <typename ContainerType>
