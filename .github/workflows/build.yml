@@ -51,6 +51,8 @@ jobs:
     - name: cppcheck
       uses: deep5050/cppcheck-action@main
       with:
+        exclude_check: build/* test/* external*
+        force_language: c++
         github_token: ${{ secrets.GITHUB_TOKEN }}
                   
     - name: Publish cppcheck report    
