@@ -61,7 +61,7 @@ jobs:
       with:
         NAME: Test
         LABEL: 'Test'
-        ICON: github
-        STATUS: echo ${TEST_RESULT}
-        COLOR: 00EEFF
+        ICON: 'github'
+        STATUS: echo "${TEST_RESULT}"
+        COLOR: red
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
