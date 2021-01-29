@@ -51,12 +51,17 @@ jobs:
       shell: bash
       run: |
         if cat test_detail.xml | grep FAIL; then
-            echo "TEST_RESULT=TEST_FAIL" >> $GITHUB_ENV
+            echo "TEST_RESULT=FAIL" >> $GITHUB_ENV
         else
-            echo "TEST_RESULT=TEST_SUCCESS" >> $GITHUB_ENV
+            echo "TEST_RESULT=SUCCESS" >> $GITHUB_ENV
         fi
         
-    - name: Check Test Success2
-      working-directory: ${{github.workspace}}/build
-      shell: bash
-      run: echo "${TEST_RESULT}"
+    - name: Test badge
+      uses: RubbaBoy/BYOB@v1.2.0
+      with:
+        NAME: Test
+        LABEL: 'Test'
+        ICON: github
+        STATUS: ${{ TEST_RESULT }}
+        COLOR: 00EEFF
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
