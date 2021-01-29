@@ -1,6 +1,6 @@
 #include <gmock/gmock.h>
 
-#include "Linq.hpp"
+#include "LINQpp/Linq.hpp"
 #include "Utils/SampleClass.hpp"
 
 TEST(LinqBaseTest, From_ExpectSuccessIfBaseIsNotModified)
