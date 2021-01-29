@@ -13,12 +13,12 @@ namespace linq
     public:
         template <typename TestContainerType = ContainerType, std::enable_if_t<traits::IsHandledContainer<TestContainerType>::value, bool> = true>
         LinqEntity(const ContainerType &baseContainer, const OutputContainerType &outputContainer)
-            : LinqBase(baseContainer), mOutputContainer(outputContainer)
+            : LinqBase<ContainerType>(baseContainer), mOutputContainer(outputContainer)
         {
         }
 
         LinqEntity(const LinqObject<const LinqBase<ContainerType>> &parent, const OutputContainerType &outputContainer)
-            : LinqBase(parent), mOutputContainer(outputContainer)
+            : LinqBase<ContainerType>(parent), mOutputContainer(outputContainer)
         {
         }
 

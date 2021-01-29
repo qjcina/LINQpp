@@ -37,7 +37,7 @@ namespace linq
         template <typename ContainerType = typename BaseType::ValueType, std::enable_if_t<traits::IsHandledContainer<ContainerType>::value, bool> = true>
         operator ContainerType() const
         {
-            if (const auto *internalPointer = get())
+            if (const auto *internalPointer = this->get())
             {
                 // object exists, can safely evaluate
                 return internalPointer->operator ContainerType();
