@@ -49,7 +49,7 @@ jobs:
     - name: Check Test Success
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: cat test_detail.xml
+      run: cat test_detail.xml | grep -q FAIL
       
     - name: Print test
       run: echo $TEST_RESULT
