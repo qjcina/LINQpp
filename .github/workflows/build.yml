@@ -41,14 +41,27 @@ jobs:
       # Execute the build.  You can specify a specific target with "--target <NAME>"
       run: cmake --build . --config $BUILD_TYPE
 
+      # TODO: Move this to separate job
     - name: Test
       working-directory: ${{github.workspace}}/build
       shell: bash
       continue-on-error: true
       run: ${{github.workspace}}/build/test/Linqplusplus_test --gtest_output="xml"
+    
+    - name: cppcheck
+      uses: deep5050/cppcheck-action@main
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+                  
+    - name: Publish cppcheck report    
+      uses: mikeal/publish-to-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH_NAME: 'master' 
 
     - name: Check Test Success
       working-directory: ${{github.workspace}}/build
+      if: github.ref == 'refs/heads/master'
       shell: bash
       run: |
         if cat test_detail.xml | grep "failure type"; then
@@ -61,6 +74,7 @@ jobs:
         
     - name: Create Badge
       uses: schneegans/dynamic-badges-action@v1.0.0
+      if: github.ref == 'refs/heads/master'
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: beb364d3e95c4db5ef641cd01ff61634
