@@ -51,9 +51,9 @@ jobs:
       shell: bash
       run: |
         if cat test_detail.xml | grep FAIL; then
-            export TEST_RESULT="TEST_FAIL"
+            echo "TEST_RESULT=TEST_FAIL" >> $GITHUB_ENV
         else
-            export TEST_RESULT="TEST_SUCCESS"
+            echo "TEST_RESULT=TEST_SUCCESS" >> $GITHUB_ENV
         fi
         
     - name: Check Test Success2
