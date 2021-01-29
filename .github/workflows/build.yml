@@ -54,11 +54,13 @@ jobs:
         name: test_executable
           
     - name: Test
+      working-directory: ${{github.workspace}}/build
       shell: bash
       continue-on-error: true
-      run: ./test_executable --gtest_output="xml"
+      run: ${{github.workspace}}/test_executable --gtest_output="xml"
    
     - name: Check Test Success
+      working-directory: ${{github.workspace}}/build
       if: github.ref == 'refs/heads/master'
       shell: bash
       run: |
