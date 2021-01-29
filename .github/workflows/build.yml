@@ -51,7 +51,7 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: bash
       run: |
-        if cat test_detail.xml | grep FAIL; then
+        if cat test_detail.xml | grep failure; then
             echo "TEST_RESULT=FAIL" >> $GITHUB_ENV
             echo "BADGE_COLOR=red" >> $GITHUB_ENV
         else
