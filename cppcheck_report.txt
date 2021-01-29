@@ -1,0 +1,542 @@
+build/CMakeFiles/3.19.3/CompilerIdC/CMakeCCompilerId.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 117 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+build/CMakeFiles/3.19.3/CompilerIdC/CMakeCCompilerId.c:591:0: information: Skipping configuration 'SDCC;__SDCC_VERSION_MAJOR' since the value of '__SDCC_VERSION_MAJOR' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  COMPILER_VERSION_MAJOR,
+^
+build/CMakeFiles/3.19.3/CompilerIdC/CMakeCCompilerId.c:591:0: information: Skipping configuration 'SDCC;__SDCC_VERSION_MAJOR;__SDCC_VERSION_MAJOR' since the value of '__SDCC_VERSION_MAJOR' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  COMPILER_VERSION_MAJOR,
+^
+build/CMakeFiles/3.19.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 115 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+build/CMakeFiles/3.19.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:576:0: information: Skipping configuration '_MSC_BUILD;_MSC_VER' since the value of '_MSC_VER' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  COMPILER_VERSION_MAJOR,
+^
+build/CMakeFiles/3.19.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:578:0: information: Skipping configuration '_MSC_BUILD;_MSC_VER' since the value of '_MSC_VER' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  '.', COMPILER_VERSION_MINOR,
+^
+external/googletest/googlemock/src/gmock-spec-builders.cc:660:13: style:inconclusive: Technically the member function 'testing::::MockObjectRegistry::states' can be const. [functionConst]
+  StateMap& states() { return states_; }
+            ^
+external/googletest/googlemock/test/gmock-actions_test.cc:90:1: error: syntax error [syntaxError]
+TEST(BuiltInDefaultValueTest, IsNullForPointerTypes) {
+^
+external/googletest/googlemock/test/gmock-cardinalities_test.cc:62:1: error: syntax error [syntaxError]
+TEST(CardinalityTest, IsDefaultConstructable) {
+^
+external/googletest/googlemock/test/gmock-function-mocker_test.cc:297:1: error: syntax error [syntaxError]
+TYPED_TEST(FunctionMockerTest, MocksVoidFunction) {
+^
+external/googletest/googlemock/test/gmock-internal-utils_test.cc:77:1: error: syntax error [syntaxError]
+TEST(JoinAsTupleTest, JoinsOneTuple) {
+^
+external/googletest/googlemock/test/gmock-matchers_test.cc:172:1: error: syntax error [syntaxError]
+TEST(MonotonicMatcherTest, IsPrintable) {
+^
+external/googletest/googlemock/test/gmock-more-actions_test.cc:1460:39: error: syntax error [syntaxError]
+                HAS_1_TEMPLATE_PARAMS(template <typename Pointee> class,
+                                      ^
+external/googletest/googlemock/test/gmock-nice-strict_test.cc:239:1: error: syntax error [syntaxError]
+TEST(NiceMockTest, AllowsExpectedCall) {
+^
+external/googletest/googlemock/test/gmock-nice-strict_test.cc:142:1: error: syntax error [syntaxError]
+TEST(RawMockTest, WarningForUninterestingCall) {
+^
+external/googletest/googlemock/test/gmock-pp-string_test.cc:110:3: error: There is an unknown macro here somewhere. Configuration is required. If sss is a macro then please configure it. [unknownMacro]
+  EXPECT_EXPANSION("0", GMOCK_PP_IS_BEGIN_PARENS(sss() sss));
+  ^
+external/googletest/googlemock/test/gmock-pp_test.cc:44:41: error: There is an unknown macro here somewhere. Configuration is required. If sss is a macro then please configure it. [unknownMacro]
+static_assert(!GMOCK_PP_IS_BEGIN_PARENS(sss() sss), "");
+                                        ^
+external/googletest/googlemock/test/gmock-spec-builders_test.cc:123:1: error: syntax error [syntaxError]
+TEST(MockMethodTest, CanInstantiateWithIncompleteArgType) {
+^
+external/googletest/googlemock/test/gmock_ex_test.cc:56:1: error: syntax error [syntaxError]
+TEST(DefaultValueTest, ThrowsRuntimeErrorWhenNoDefaultValue) {
+^
+external/googletest/googlemock/test/gmock_leak_test_.cc:58:1: error: syntax error [syntaxError]
+TEST(LeakTest, LeakedMockWithExpectCallCausesFailureWhenLeakCheckingIsEnabled) {
+^
+external/googletest/googlemock/test/gmock_stress_test.cc:197:1: error: syntax error [syntaxError]
+TEST(StressTest, CanUseGMockWithThreads) {
+^
+external/googletest/googletest/samples/sample10_unittest.cc:94:1: error: syntax error [syntaxError]
+TEST(ListenersTest, DoesNotLeak) {
+^
+external/googletest/googletest/samples/sample1_unittest.cc:100:1: error: syntax error [syntaxError]
+TEST(FactorialTest, Zero) {
+^
+external/googletest/googletest/samples/sample2.cc:49:32: style:inconclusive: Function 'Set' argument 1 names different: declaration 'c_string' definition 'a_c_string'. [funcArgNamesDifferent]
+void MyString::Set(const char* a_c_string) {
+                               ^
+external/googletest/googletest/samples/sample2.h:77:24: note: Function 'Set' argument 1 names different: declaration 'c_string' definition 'a_c_string'.
+  void Set(const char* c_string);
+                       ^
+external/googletest/googletest/samples/sample2.cc:49:32: note: Function 'Set' argument 1 names different: declaration 'c_string' definition 'a_c_string'.
+void MyString::Set(const char* a_c_string) {
+                               ^
+external/googletest/googletest/samples/sample2_unittest.cc:77:1: error: syntax error [syntaxError]
+TEST(MyString, ConstructorFromCString) {
+^
+external/googletest/googletest/samples/sample3_unittest.cc:120:1: error: syntax error [syntaxError]
+TEST_F(QueueTestSmpl3, DefaultConstructor) {
+^
+external/googletest/googletest/samples/sample5_unittest.cc:97:1: error: syntax error [syntaxError]
+TEST_F(IntegerFunctionTest, Factorial) {
+^
+external/googletest/googletest/samples/prime_tables.h:83:34: warning: Class 'PreCalculatedPrimeTable' does not have a copy constructor which is recommended since it has dynamic memory/resource allocation(s). [noCopyConstructor]
+      : is_prime_size_(max + 1), is_prime_(new bool[max + 1]) {
+                                 ^
+external/googletest/googletest/samples/sample6_unittest.cc:99:1: error: syntax error [syntaxError]
+TYPED_TEST(PrimeTableTest, ReturnsFalseForNonPrimes) {
+^
+external/googletest/googletest/samples/sample6_unittest.cc:170:1: error: syntax error [syntaxError]
+TYPED_TEST_P(PrimeTableTest2, ReturnsFalseForNonPrimes) {
+^
+external/googletest/googletest/samples/sample7_unittest.cc:79:1: error: syntax error [syntaxError]
+TEST_P(PrimeTableTestSmpl7, ReturnsFalseForNonPrimes) {
+^
+external/googletest/googletest/samples/sample8_unittest.cc:107:1: error: syntax error [syntaxError]
+TEST_P(PrimeTableTest, ReturnsFalseForNonPrimes) {
+^
+external/googletest/googletest/samples/sample9_unittest.cc:90:1: error: syntax error [syntaxError]
+TEST(CustomOutputTest, PrintsMessage) {
+^
+external/googletest/googletest/src/gtest-death-test.cc:1178:0: information: Skipping configuration 'GTEST_EXTRA_DEATH_TEST_COMMAND_LINE_ARGS_;GTEST_HAS_DEATH_TEST' since the value of 'GTEST_EXTRA_DEATH_TEST_COMMAND_LINE_ARGS_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+        GTEST_EXTRA_DEATH_TEST_COMMAND_LINE_ARGS_();
+^
+external/googletest/googletest/src/gtest-death-test.cc:1386:30: style: Variable 'child_pid' is reassigned a value before the old one has been used. [redundantAssignment]
+  if (use_fork && (child_pid = fork()) == 0) {
+                             ^
+external/googletest/googletest/src/gtest-death-test.cc:1378:15: note: child_pid is assigned
+    child_pid = clone(&ExecDeathTestChildMain, stack_top, SIGCHLD, &args);
+              ^
+external/googletest/googletest/src/gtest-death-test.cc:1386:30: note: child_pid is overwritten
+  if (use_fork && (child_pid = fork()) == 0) {
+                             ^
+external/googletest/googletest/src/gtest-death-test.cc:1088:48: style:inconclusive: Function 'ForkingDeathTest' argument 1 names different: declaration 'statement' definition 'a_statement'. [funcArgNamesDifferent]
+ForkingDeathTest::ForkingDeathTest(const char* a_statement,
+                                               ^
+external/googletest/googletest/src/gtest-death-test.cc:1074:32: note: Function 'ForkingDeathTest' argument 1 names different: declaration 'statement' definition 'a_statement'.
+  ForkingDeathTest(const char* statement, Matcher<const std::string&> matcher);
+                               ^
+external/googletest/googletest/src/gtest-death-test.cc:1088:48: note: Function 'ForkingDeathTest' argument 1 names different: declaration 'statement' definition 'a_statement'.
+ForkingDeathTest::ForkingDeathTest(const char* a_statement,
+                                               ^
+external/googletest/googletest/src/gtest-death-test.cc:191:0: information: Skipping configuration 'GTEST_HAS_DEATH_TEST;GTEST_KILLED_BY_SIGNAL_OVERRIDE_;GTEST_OS_FUCHSIA=0;GTEST_OS_WINDOWS=0' since the value of 'GTEST_KILLED_BY_SIGNAL_OVERRIDE_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    if (GTEST_KILLED_BY_SIGNAL_OVERRIDE_(signum_, exit_status, &result)) {
+^
+external/googletest/googletest/src/gtest-death-test.cc:867:7: style:inconclusive: Technically the member function 'testing::internal::Arguments::size' can be const. [functionConst]
+  int size() {
+      ^
+external/googletest/googletest/src/gtest-death-test.cc:1224:7: style: struct member 'ExecDeathTestArgs::close_fd' is never used. [unusedStructMember]
+  int close_fd;       // File descriptor to close; the read end of a pipe
+      ^
+external/googletest/googletest/src/gtest-death-test.cc:221:0: information: Skipping configuration 'GTEST_HAS_DEATH_TEST;WCOREDUMP' since the value of 'WCOREDUMP' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  if (WCOREDUMP(exit_code)) {
+^
+external/googletest/googletest/src/gtest-filepath.cc:333:14: style: Condition 'result==-1' is always false [knownConditionTrueFalse]
+  if (result == -1) {
+             ^
+external/googletest/googletest/src/gtest-filepath.cc:328:16: note: Assignment 'result=0', assigned value is 0
+  int result = 0;
+               ^
+external/googletest/googletest/src/gtest-filepath.cc:333:14: note: Condition 'result==-1' is always false
+  if (result == -1) {
+             ^
+external/googletest/googletest/src/gtest-filepath.cc:112:3: style:inconclusive: Consecutive return, break, continue, goto or throw statements are unnecessary. [duplicateBreak]
+  return FilePath(result == nullptr ? "" : cwd);
+  ^
+external/googletest/googletest/src/gtest-filepath.cc:104:0: information: Skipping configuration 'PATH_MAX' since the value of 'PATH_MAX' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  char cwd[GTEST_PATH_MAX_ + 1] = { '\0' };
+^
+external/googletest/googletest/src/gtest-filepath.cc:104:0: information: Skipping configuration '_XOPEN_PATH_MAX' since the value of '_XOPEN_PATH_MAX' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  char cwd[GTEST_PATH_MAX_ + 1] = { '\0' };
+^
+external/googletest/googletest/src/gtest-port.cc:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 23 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+external/googletest/googletest/src/gtest-port.cc:1338:0: information: Skipping configuration 'GTEST_GET_BOOL_FROM_ENV_' since the value of 'GTEST_GET_BOOL_FROM_ENV_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  return GTEST_GET_BOOL_FROM_ENV_(flag, default_value);
+^
+external/googletest/googletest/src/gtest-port.cc:1352:0: information: Skipping configuration 'GTEST_GET_INT32_FROM_ENV_' since the value of 'GTEST_GET_INT32_FROM_ENV_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  return GTEST_GET_INT32_FROM_ENV_(flag, default_value);
+^
+external/googletest/googletest/src/gtest-port.cc:1395:0: information: Skipping configuration 'GTEST_GET_STRING_FROM_ENV_' since the value of 'GTEST_GET_STRING_FROM_ENV_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  return GTEST_GET_STRING_FROM_ENV_(flag, default_value);
+^
+external/googletest/googletest/src/gtest.cc:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 38 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+external/googletest/googletest/src/gtest.cc:5150:34: error: Null pointer dereference: static_cast<volatile int*>(nullptr) [nullPointer]
+      *static_cast<volatile int*>(nullptr) = 1;
+                                 ^
+external/googletest/googletest/src/gtest.cc:3781:1: style:inconclusive: Function 'OnTestProgramStart' argument 1 names different: declaration 'unit_test' definition 'parameter'. [funcArgNamesDifferent]
+GTEST_REPEATER_METHOD_(OnTestProgramStart, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3709:43: note: Function 'OnTestProgramStart' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+  void OnTestProgramStart(const UnitTest& unit_test) override;
+                                          ^
+external/googletest/googletest/src/gtest.cc:3781:1: note: Function 'OnTestProgramStart' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+GTEST_REPEATER_METHOD_(OnTestProgramStart, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3782:1: style:inconclusive: Function 'OnEnvironmentsSetUpStart' argument 1 names different: declaration 'unit_test' definition 'parameter'. [funcArgNamesDifferent]
+GTEST_REPEATER_METHOD_(OnEnvironmentsSetUpStart, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3711:49: note: Function 'OnEnvironmentsSetUpStart' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+  void OnEnvironmentsSetUpStart(const UnitTest& unit_test) override;
+                                                ^
+external/googletest/googletest/src/gtest.cc:3782:1: note: Function 'OnEnvironmentsSetUpStart' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+GTEST_REPEATER_METHOD_(OnEnvironmentsSetUpStart, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3788:1: style:inconclusive: Function 'OnTestStart' argument 1 names different: declaration 'test_info' definition 'parameter'. [funcArgNamesDifferent]
+GTEST_REPEATER_METHOD_(OnTestStart, TestInfo)
+^
+external/googletest/googletest/src/gtest.cc:3718:36: note: Function 'OnTestStart' argument 1 names different: declaration 'test_info' definition 'parameter'.
+  void OnTestStart(const TestInfo& test_info) override;
+                                   ^
+external/googletest/googletest/src/gtest.cc:3788:1: note: Function 'OnTestStart' argument 1 names different: declaration 'test_info' definition 'parameter'.
+GTEST_REPEATER_METHOD_(OnTestStart, TestInfo)
+^
+external/googletest/googletest/src/gtest.cc:3789:1: style:inconclusive: Function 'OnTestPartResult' argument 1 names different: declaration 'result' definition 'parameter'. [funcArgNamesDifferent]
+GTEST_REPEATER_METHOD_(OnTestPartResult, TestPartResult)
+^
+external/googletest/googletest/src/gtest.cc:3719:47: note: Function 'OnTestPartResult' argument 1 names different: declaration 'result' definition 'parameter'.
+  void OnTestPartResult(const TestPartResult& result) override;
+                                              ^
+external/googletest/googletest/src/gtest.cc:3789:1: note: Function 'OnTestPartResult' argument 1 names different: declaration 'result' definition 'parameter'.
+GTEST_REPEATER_METHOD_(OnTestPartResult, TestPartResult)
+^
+external/googletest/googletest/src/gtest.cc:3790:1: style:inconclusive: Function 'OnEnvironmentsTearDownStart' argument 1 names different: declaration 'unit_test' definition 'parameter'. [funcArgNamesDifferent]
+GTEST_REPEATER_METHOD_(OnEnvironmentsTearDownStart, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3726:52: note: Function 'OnEnvironmentsTearDownStart' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+  void OnEnvironmentsTearDownStart(const UnitTest& unit_test) override;
+                                                   ^
+external/googletest/googletest/src/gtest.cc:3790:1: note: Function 'OnEnvironmentsTearDownStart' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+GTEST_REPEATER_METHOD_(OnEnvironmentsTearDownStart, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3791:1: style:inconclusive: Function 'OnEnvironmentsSetUpEnd' argument 1 names different: declaration 'unit_test' definition 'parameter'. [funcArgNamesDifferent]
+GTEST_REVERSE_REPEATER_METHOD_(OnEnvironmentsSetUpEnd, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3712:47: note: Function 'OnEnvironmentsSetUpEnd' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+  void OnEnvironmentsSetUpEnd(const UnitTest& unit_test) override;
+                                              ^
+external/googletest/googletest/src/gtest.cc:3791:1: note: Function 'OnEnvironmentsSetUpEnd' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+GTEST_REVERSE_REPEATER_METHOD_(OnEnvironmentsSetUpEnd, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3792:1: style:inconclusive: Function 'OnEnvironmentsTearDownEnd' argument 1 names different: declaration 'unit_test' definition 'parameter'. [funcArgNamesDifferent]
+GTEST_REVERSE_REPEATER_METHOD_(OnEnvironmentsTearDownEnd, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3727:50: note: Function 'OnEnvironmentsTearDownEnd' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+  void OnEnvironmentsTearDownEnd(const UnitTest& unit_test) override;
+                                                 ^
+external/googletest/googletest/src/gtest.cc:3792:1: note: Function 'OnEnvironmentsTearDownEnd' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+GTEST_REVERSE_REPEATER_METHOD_(OnEnvironmentsTearDownEnd, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3793:1: style:inconclusive: Function 'OnTestEnd' argument 1 names different: declaration 'test_info' definition 'parameter'. [funcArgNamesDifferent]
+GTEST_REVERSE_REPEATER_METHOD_(OnTestEnd, TestInfo)
+^
+external/googletest/googletest/src/gtest.cc:3720:34: note: Function 'OnTestEnd' argument 1 names different: declaration 'test_info' definition 'parameter'.
+  void OnTestEnd(const TestInfo& test_info) override;
+                                 ^
+external/googletest/googletest/src/gtest.cc:3793:1: note: Function 'OnTestEnd' argument 1 names different: declaration 'test_info' definition 'parameter'.
+GTEST_REVERSE_REPEATER_METHOD_(OnTestEnd, TestInfo)
+^
+external/googletest/googletest/src/gtest.cc:3799:1: style:inconclusive: Function 'OnTestProgramEnd' argument 1 names different: declaration 'unit_test' definition 'parameter'. [funcArgNamesDifferent]
+GTEST_REVERSE_REPEATER_METHOD_(OnTestProgramEnd, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:3729:41: note: Function 'OnTestProgramEnd' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+  void OnTestProgramEnd(const UnitTest& unit_test) override;
+                                        ^
+external/googletest/googletest/src/gtest.cc:3799:1: note: Function 'OnTestProgramEnd' argument 1 names different: declaration 'unit_test' definition 'parameter'.
+GTEST_REVERSE_REPEATER_METHOD_(OnTestProgramEnd, UnitTest)
+^
+external/googletest/googletest/src/gtest.cc:4162:18: performance: Passing the result of c_str() to a function that takes std::string as argument no. 1 is slow and redundant. [stlcstrParam]
+              << EscapeXmlAttribute(summary.c_str()) << "\">";
+                 ^
+external/googletest/googletest/src/gtest.cc:584:0: information: Skipping configuration 'GTEST_CUSTOM_GET_ARGVS_' since the value of 'GTEST_CUSTOM_GET_ARGVS_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  const auto& custom = GTEST_CUSTOM_GET_ARGVS_();
+^
+external/googletest/googletest/src/gtest.cc:6472:0: information: Skipping configuration 'GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_' since the value of 'GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_(argc, argv);
+^
+external/googletest/googletest/src/gtest.cc:6482:0: information: Skipping configuration 'GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_' since the value of 'GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_(argc, argv);
+^
+external/googletest/googletest/src/gtest.cc:6498:0: information: Skipping configuration 'GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_' since the value of 'GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_(&argc, argv);
+^
+external/googletest/googletest/src/gtest.cc:6506:0: information: Skipping configuration 'GTEST_CUSTOM_TEMPDIR_FUNCTION_' since the value of 'GTEST_CUSTOM_TEMPDIR_FUNCTION_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  return GTEST_CUSTOM_TEMPDIR_FUNCTION_();
+^
+external/googletest/googletest/src/gtest.cc:5446:0: information: Skipping configuration 'GTEST_CUSTOM_TEST_EVENT_LISTENER_' since the value of 'GTEST_CUSTOM_TEST_EVENT_LISTENER_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    listeners()->Append(new GTEST_CUSTOM_TEST_EVENT_LISTENER_());
+^
+external/googletest/googletest/src/gtest.cc:5591:0: information: Skipping configuration 'GTEST_EXTRA_DEATH_TEST_CHILD_SETUP_;GTEST_HAS_DEATH_TEST' since the value of 'GTEST_EXTRA_DEATH_TEST_CHILD_SETUP_' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    GTEST_EXTRA_DEATH_TEST_CHILD_SETUP_();
+^
+external/googletest/googletest/test/googletest-death-test-test.cc:1437:29: error: There is an unknown macro here somewhere. Configuration is required. If ; is a macro then please configure it. [unknownMacro]
+  EXPECT_DEATH_IF_SUPPORTED(;, "");
+                            ^
+external/googletest/googletest/test/googletest-death-test-test.cc:761:65: error: There is an unknown macro here somewhere. Configuration is required. If ; is a macro then please configure it. [unknownMacro]
+  ASSERT_DEBUG_DEATH(GTEST_LOG_(INFO) << "In ASSERT_DEBUG_DEATH"; return, "")
+                                                                ^
+external/googletest/googletest/test/googletest-death-test-test.cc:1356:53: error: There is an unknown macro here somewhere. Configuration is required. If ; is a macro then please configure it. [unknownMacro]
+  EXPECT_NONFATAL_FAILURE(EXPECT_DEATH_IF_SUPPORTED(;, ""), "");
+                                                    ^
+external/googletest/googletest/test/googletest-failfast-unittest_.cc:48:1: error: syntax error [syntaxError]
+TEST_F(HasFixtureTest, Test0) {}
+^
+external/googletest/googletest/test/googletest-filepath-test.cc:97:1: error: syntax error [syntaxError]
+TEST(IsEmptyTest, ReturnsTrueForEmptyPath) {
+^
+external/googletest/googletest/test/googletest-filter-unittest_.cc:49:1: error: syntax error [syntaxError]
+TEST_F(FooTest, Abc) {
+^
+external/googletest/googletest/test/googletest-listener-test.cc:226:1: error: syntax error [syntaxError]
+TEST_F(ListenerTest, DoesFoo) {
+^
+external/googletest/googletest/test/googletest-message-test.cc:44:1: error: syntax error [syntaxError]
+TEST(MessageTest, DefaultConstructor) {
+^
+external/googletest/googletest/test/googletest-options-test.cc:60:1: error: syntax error [syntaxError]
+TEST(XmlOutputTest, GetOutputFormatDefault) {
+^
+external/googletest/googletest/test/googletest-output-test_.cc:105:26: error: syntax error [syntaxError]
+INSTANTIATE_TEST_SUITE_P(, EmptyBasenameParamInst, testing::Values(1));
+                         ^
+external/googletest/googletest/test/googletest-param-test-invalid-name1-test_.cc:36:1: error: syntax error [syntaxError]
+TEST_P(DummyTest, Dummy) {
+^
+external/googletest/googletest/test/googletest-param-test-invalid-name2-test_.cc:41:1: error: syntax error [syntaxError]
+TEST_P(DummyTest, Dummy) {
+^
+external/googletest/googletest/test/googletest-param-test-test.cc:1087:1: error: syntax error [syntaxError]
+TEST_P(NotInstantiatedTest, Used) { }
+^
+external/googletest/googletest/test/googletest-port-test.cc:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 16 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+external/googletest/googletest/test/googletest-port-test.cc:67:1: error: syntax error [syntaxError]
+TEST(IsXDigitTest, ReturnsFalseForNarrowNonAscii) {
+^
+external/googletest/googletest/test/googletest-printers-test.cc:275:1: error: syntax error [syntaxError]
+TEST(PrintEnumTest, AnonymousEnum) {
+^
+external/googletest/googletest/test/googletest-shuffle-test_.cc:49:1: error: syntax error [syntaxError]
+TEST_F(A, A) {}
+^
+external/googletest/googletest/test/googletest-test-part-test.cc:56:1: error: syntax error [syntaxError]
+TEST_F(TestPartResultTest, ConstructorWorks) {
+^
+external/googletest/googletest/test/gtest-typed-test_test.cc:167:1: error: syntax error [syntaxError]
+TYPED_TEST(NumericTest, DefaultIsZero) {
+^
+external/googletest/googletest/test/gtest-typed-test_test.cc:412:1: error: syntax error [syntaxError]
+TYPED_TEST_P(NumericTest, DefaultIsZero) {
+^
+external/googletest/googletest/test/gtest-unittest-api_test.cc:113:1: error: syntax error [syntaxError]
+TEST(ApiTest, UnitTestImmutableAccessorsWork) {
+^
+external/googletest/googletest/test/gtest-unittest-api_test.cc:101:1: error: syntax error [syntaxError]
+TYPED_TEST(TestSuiteWithCommentTest, Dummy) {}
+^
+external/googletest/googletest/test/gtest_environment_test.cc:107:1: error: syntax error [syntaxError]
+TEST(FooTest, Bar) {
+^
+external/googletest/googletest/test/gtest_pred_impl_unittest.cc:93:8: style:inconclusive: Technically the member function 'PredFunctor1::operator()' can be const. [functionConst]
+  bool operator()(const T1& v1) {
+       ^
+external/googletest/googletest/test/gtest_pred_impl_unittest.cc:479:8: style:inconclusive: Technically the member function 'PredFunctor2::operator()' can be const. [functionConst]
+  bool operator()(const T1& v1,
+       ^
+external/googletest/googletest/test/gtest_pred_impl_unittest.cc:907:8: style:inconclusive: Technically the member function 'PredFunctor3::operator()' can be const. [functionConst]
+  bool operator()(const T1& v1,
+       ^
+external/googletest/googletest/test/gtest_pred_impl_unittest.cc:1377:8: style:inconclusive: Technically the member function 'PredFunctor4::operator()' can be const. [functionConst]
+  bool operator()(const T1& v1,
+       ^
+external/googletest/googletest/test/gtest_pred_impl_unittest.cc:1889:8: style:inconclusive: Technically the member function 'PredFunctor5::operator()' can be const. [functionConst]
+  bool operator()(const T1& v1,
+       ^
+external/googletest/googletest/test/gtest_premature_exit_test.cc:79:1: error: syntax error [syntaxError]
+TEST_F(PrematureExitDeathTest, FileExistsDuringExecutionOfDeathTest) {
+^
+external/googletest/googletest/test/gtest_repeat_test.cc:85:1: error: syntax error [syntaxError]
+TEST(FooTest, ShouldFail) {
+^
+external/googletest/googletest/test/gtest_sole_header_test.cc:43:27: error: There is an unknown macro here somewhere. Configuration is required. If ; is a macro then please configure it. [unknownMacro]
+  EXPECT_NO_FATAL_FAILURE(;);
+                          ^
+external/googletest/googletest/test/gtest_stress_test.cc:119:1: error: syntax error [syntaxError]
+TEST(StressTest, CanUseScopedTraceAndAssertionsInManyThreads) {
+^
+external/googletest/googletest/test/gtest_unittest.cc:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 26 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+external/googletest/googletest/test/gtest_unittest.cc:5420:26: error: syntax error [syntaxError]
+INSTANTIATE_TEST_SUITE_P(, CodeLocationForTESTP, Values(0));
+                         ^
+src/LINQpp/LinqBase.hpp:41:62: style:inconclusive: Member variable 'LinqBase::mParent' is in the wrong place in the initializer list. [initializerList]
+        const std::shared_ptr<const LinqBase<ContainerType>> mParent;
+                                                             ^
+src/LINQpp/LinqBase.hpp:27:55: note: Member variable 'LinqBase::mParent' is in the wrong place in the initializer list.
+            : mBaseContainer(parent->mBaseContainer), mParent(parent)
+                                                      ^
+src/LINQpp/LinqBase.hpp:41:62: note: Member variable 'LinqBase::mParent' is in the wrong place in the initializer list.
+        const std::shared_ptr<const LinqBase<ContainerType>> mParent;
+                                                             ^
+src/LINQpp/LinqTypes.hpp:26:9: style: Class 'LinqObject' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+        LinqObject(const std::shared_ptr<InputBaseType> &base)
+        ^
+src/LINQpp/LinqTypes.hpp:32:9: style: Class 'LinqObject' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+        LinqObject(std::shared_ptr<InputBaseType> &&base)
+        ^
+src/LINQpp/LinqEntity.hpp:47:20: style: Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm]
+            output.push_back(*elementIterator);
+                   ^
+test/Utils/SampleClass.hpp:9:5: style: Struct 'SampleClass' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+    SampleClass(const int32_t value)
+    ^
+external/googletest/googletest/src/gtest-death-test.cc:1118:0: style: The function 'AssumeRole' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock-cardinalities.cc:142:0: style: The function 'AtMost' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-port.cc:1188:0: style: The function 'CaptureStdout' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-port.cc:1261:0: style: The function 'ClearInjectableArgvs' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:1623:0: style: The function 'CmpHelperSTRCASEEQ' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:1653:0: style: The function 'CmpHelperSTRCASENE' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:1607:0: style: The function 'CmpHelperSTREQ' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:1639:0: style: The function 'CmpHelperSTRNE' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/samples/sample6_unittest.cc:47:0: style: The function 'CreatePrimeTable < OnTheFlyPrimeTable >' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/samples/sample6_unittest.cc:52:0: style: The function 'CreatePrimeTable < PreCalculatedPrimeTable >' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:1599:0: style: The function 'DoubleLE' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:1510:0: style: The function 'DoubleNearPredFormat' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:3863:0: style: The function 'EscapeXmlText' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-death-test.cc:232:0: style: The function 'ExitedUnsuccessfully' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/samples/sample1.cc:35:0: style: The function 'Factorial' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:1592:0: style: The function 'FloatLE' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock-matchers.cc:51:0: style: The function 'FormatMatcherDescription' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:1494:0: style: The function 'GetBoolAssertionFailureMessage' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-port.cc:1198:0: style: The function 'GetCapturedStdout' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock-internal-utils.cc:112:0: style: The function 'GetFailureReporter' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock-internal-utils.cc:187:0: style: The function 'GetWithoutMatchers' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock-internal-utils.cc:189:0: style: The function 'IllegalDoDefault' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-death-test.cc:146:0: style: The function 'InDeathTestChild' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:469:0: style: The function 'InsertSyntheticTestCase' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:1736:0: style: The function 'IsNotSubstring' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock-cardinalities.cc:76:0: style: The function 'IsSatisfiedByCallCount' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock-cardinalities.cc:80:0: style: The function 'IsSaturatedByCallCount' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:1724:0: style: The function 'IsSubstring' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock-spec-builders.cc:72:0: style: The function 'LogWithLocation' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:2703:0: style: The function 'MakeAndRegisterTestInfo' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-death-test.cc:1586:0: style: The function 'ParseInternalRunDeathTestFlag' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/samples/sample4.cc:52:0: style: The function 'Print' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-printers.cc:115:0: style: The function 'PrintBytesInObjectTo' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-printers.cc:428:0: style: The function 'PrintStringTo' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-printers.cc:437:0: style: The function 'PrintWideStringTo' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:518:0: style: The function 'RegisterTypeParameterizedTestSuiteInstantiation' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock-internal-utils.cc:96:0: style: The function 'ReportFailure' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:2715:0: style: The function 'ReportInvalidTestSuiteType' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/test/googletest-catch-exceptions-test_.cc:149:0: style: The function 'SetUpTestSuite' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/test/googletest-catch-exceptions-test_.cc:113:0: style: The function 'TearDownTestSuite' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest.cc:6504:0: style: The function 'TempDir' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-printers.cc:323:0: style: The function 'UniversalPrintArray' is never used. [unusedFunction]
+
+^
+external/googletest/googletest/src/gtest-death-test.cc:1095:0: style: The function 'Wait' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock_main.cc:61:0: style: The function '_tmain' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock_main.cc:45:0: style: The function 'loop' is never used. [unusedFunction]
+
+^
+external/googletest/googlemock/src/gmock_main.cc:39:0: style: The function 'setup' is never used. [unusedFunction]
+
+^
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]
+
