@@ -8,7 +8,7 @@
 namespace linq
 {
     template <typename ContainerType>
-    class LinqBase
+    class LinqBase : public std::enable_shared_from_this<LinqBase<ContainerType>>
     {
     protected:
         using ContainerValueType = typename ContainerType::value_type;
@@ -16,26 +16,34 @@ namespace linq
         using OutputContainerType = std::vector<OutputContainerInternalType>;
 
     public:
+        using ValueType = ContainerType;
+
         explicit LinqBase(const ContainerType &container)
             : mBaseContainer(container)
         {
         }
 
-        LinqEntity<ContainerType> where(std::function<bool(typename ContainerType::value_type)> selectFunction) const;
-        LinqEntity<ContainerType> where(typename ContainerType::value_type selectElement) const;
+        explicit LinqBase(const LinqObject<const LinqBase<ContainerType>> &parent)
+            : mBaseContainer(parent->mBaseContainer), mParent(parent)
+        {
+        }
 
-        virtual LinqBase<ContainerType> forceEvaluate() const;
+        LinqObjectBase<ContainerType> where(std::function<bool(typename ContainerType::value_type)> selectFunction) const;
+        LinqObjectBase<ContainerType> where(typename ContainerType::value_type selectElement) const;
+
+        virtual LinqObjectBase<ContainerType> forceEvaluate() const;
 
         virtual operator ContainerType() const;
 
         virtual ~LinqBase() = default;
 
     protected:
+        const std::shared_ptr<const LinqBase<ContainerType>> mParent;
         const ContainerType &mBaseContainer;
     };
 
     template <typename ContainerType>
-    LinqEntity<ContainerType> LinqBase<ContainerType>::where(std::function<bool(typename ContainerType::value_type)> selectFunction) const
+    LinqObjectBase<ContainerType> LinqBase<ContainerType>::where(std::function<bool(typename ContainerType::value_type)> selectFunction) const
     {
         OutputContainerType outputContainer;
 
@@ -46,30 +54,22 @@ namespace linq
                 outputContainer.push_back(i);
             }
         }
+        auto x = std::make_shared<LinqEntity<ContainerType>>(shared_from_this(), outputContainer);
 
-        return LinqEntity<ContainerType>(mBaseContainer, outputContainer);
+        return x;
     }
 
     template <typename ContainerType>
-    LinqEntity<ContainerType> LinqBase<ContainerType>::where(typename ContainerType::value_type selectElement) const
+    LinqObjectBase<ContainerType> LinqBase<ContainerType>::where(typename ContainerType::value_type selectElement) const
     {
-        OutputContainerType outputContainer;
-
-        for (ContainerType::const_iterator i = mBaseContainer.begin(); mBaseContainer.end() != i; ++i)
-        {
-            if (selectElement == *i)
-            {
-                outputContainer.push_back(i);
-            }
-        }
-
-        return LinqEntity<ContainerType>(mBaseContainer, outputContainer);
+        return where([&](const ContainerType::value_type &value) { return value == selectElement; });
     }
 
     template <typename ContainerType>
-    LinqBase<ContainerType> LinqBase<ContainerType>::forceEvaluate() const
+    LinqObjectBase<ContainerType> LinqBase<ContainerType>::forceEvaluate() const
     {
-        return LinqBase<ContainerType>(*this);
+        // nothing to evaluate
+        return std::make_shared<LinqBase<ContainerType>>(*this);
     }
 
     template <typename ContainerType>
