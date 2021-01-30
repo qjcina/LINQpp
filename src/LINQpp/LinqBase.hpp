@@ -40,6 +40,11 @@ namespace linq
         template <typename ReturnType = ElementType, std::enable_if_t<std::is_default_constructible_v<ReturnType>, bool> = true>
         ReturnType lastOrDefault(const Comparator &comparator) const;
 
+        bool any(const Comparator &comparator) const;
+        bool all(const Comparator &comparator) const;
+
+        bool contains(const Comparator &comparator) const;
+
         virtual LinqObjectBase<ContainerType> forceEvaluate() const;
 
         virtual operator ContainerType() const;
@@ -106,6 +111,24 @@ namespace linq
             return *foundElement;
         else
             return ElementType();
+    }
+
+    template <typename ContainerType>
+    bool LinqBase<ContainerType>::any(const Comparator &comparator) const
+    {
+        return std::any_of(mBaseContainer.begin(), mBaseContainer.end(), comparator);
+    }
+
+    template <typename ContainerType>
+    bool LinqBase<ContainerType>::all(const Comparator &comparator) const
+    {
+        return std::all_of(mBaseContainer.begin(), mBaseContainer.end(), comparator);
+    }
+
+    template <typename ContainerType>
+    bool LinqBase<ContainerType>::contains(const Comparator &comparator) const
+    {
+        return any(comparator);
     }
 
     template <typename ContainerType>
