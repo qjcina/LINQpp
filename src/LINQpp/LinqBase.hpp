@@ -4,6 +4,7 @@
 #include "LinqEntity.hpp"
 
 #include <functional>
+#include <algorithm>
 
 namespace linq
 {
@@ -30,7 +31,14 @@ namespace linq
         {
         }
 
-        LinqObjectBase<ContainerType> where(const Comparator& comparator) const;
+        LinqObjectBase<ContainerType> where(const Comparator &comparator) const;
+
+        const ElementType &first(const Comparator &comparator) const;
+        const ElementType &last(const Comparator &comparator) const;
+        template <typename ReturnType = ElementType, std::enable_if_t<std::is_default_constructible_v<ReturnType>, bool> = true>
+        ReturnType firstOrDefault(const Comparator &comparator) const;
+        template <typename ReturnType = ElementType, std::enable_if_t<std::is_default_constructible_v<ReturnType>, bool> = true>
+        ReturnType lastOrDefault(const Comparator &comparator) const;
 
         virtual LinqObjectBase<ContainerType> forceEvaluate() const;
 
@@ -44,10 +52,9 @@ namespace linq
     };
 
     template <typename ContainerType>
-    LinqObjectBase<ContainerType> LinqBase<ContainerType>::where(const Comparator& comparator) const
+    LinqObjectBase<ContainerType> LinqBase<ContainerType>::where(const Comparator &comparator) const
     {
         OutputContainerType outputContainer;
-
         for (typename ContainerType::const_iterator i = mBaseContainer.begin(); mBaseContainer.end() != i; ++i)
         {
             if (comparator(*i))
@@ -55,7 +62,50 @@ namespace linq
                 outputContainer.push_back(i);
             }
         }
+
         return std::make_shared<LinqEntity<ContainerType>>(this->shared_from_this(), outputContainer);
+    }
+
+    template <typename ContainerType>
+    const typename LinqBase<ContainerType>::ElementType &LinqBase<ContainerType>::first(const Comparator &comparator) const
+    {
+        const auto foundElement = std::find_if(mBaseContainer.begin(), mBaseContainer.end(), comparator);
+        if (foundElement != mBaseContainer.end())
+            return *foundElement;
+
+        throw std::logic_error("LINQpp could not find element.");
+    }
+
+    template <typename ContainerType>
+    template <typename ReturnType, std::enable_if_t<std::is_default_constructible_v<ReturnType>, bool>>
+    ReturnType LinqBase<ContainerType>::firstOrDefault(const Comparator &comparator) const
+    {
+        const auto foundElement = std::find_if(mBaseContainer.begin(), mBaseContainer.end(), comparator);
+        if (foundElement != mBaseContainer.end())
+            return *foundElement;
+        else
+            return ElementType();
+    }
+
+    template <typename ContainerType>
+    const typename LinqBase<ContainerType>::ElementType &LinqBase<ContainerType>::last(const Comparator &comparator) const
+    {
+        const auto foundElement = std::find_if(mBaseContainer.rbegin(), mBaseContainer.rend(), comparator);
+        if (foundElement != mBaseContainer.rend())
+            return *foundElement;
+
+        throw std::logic_error("LINQpp could not find element.");
+    }
+
+    template <typename ContainerType>
+    template <typename ReturnType, std::enable_if_t<std::is_default_constructible_v<ReturnType>, bool>>
+    ReturnType LinqBase<ContainerType>::lastOrDefault(const Comparator &comparator) const
+    {
+        const auto foundElement = std::find_if(mBaseContainer.rbegin(), mBaseContainer.rend(), comparator);
+        if (foundElement != mBaseContainer.rend())
+            return *foundElement;
+        else
+            return ElementType();
     }
 
     template <typename ContainerType>

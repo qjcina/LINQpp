@@ -39,7 +39,17 @@ linq::from(array)->where([](const auto& element){ return element.size() > 2; });
 ❌ Distinct  
 ❌ Union / Intersect / Except  
 ❌ SequenceEqual  
-❌ First / FirstOrDefault / Last / LastOrDefault  
+✔️ First / FirstOrDefault / Last / LastOrDefault  
+```c++
+// first / last throw std::logic_error when element is not found
+linq::from(array)->first("element");                                              // compare with literal value
+linq::from(array)->first([](const auto& element){ return element.size() > 2; });  // compare with lambda expression
+// firstOrDefault / lastOrDefault are available only for class container types that
+// are default constructible or basic types
+linq::from(array)->firstOrDefault("element");                                     // compare with literal value
+linq::from(array)->firstOrDefault([](const auto& element)
+                                 { return element.size() > 2; });                // compare with lambda expression
+```  
 ❌ Single  
 ❌ ElementAt  
 ❌ Any / All  
