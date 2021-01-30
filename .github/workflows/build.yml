@@ -53,8 +53,8 @@ jobs:
       with:
         name: test_executable
         
-    - name: Display structure of downloaded files
-      run: ls -R
+    - name: Add +x permissions to test_executable
+      run: chmod +x ${{github.workspace}}/Linqplusplus_test
       working-directory: ${{github.workspace}}
           
     - name: Test
