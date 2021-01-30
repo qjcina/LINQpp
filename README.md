@@ -52,18 +52,30 @@ linq::from(array)->where([](const auto& element){ return element.size() > 2; });
 
 ```c++
 // first / last throw std::logic_error when element is not found
-linq::from(array)->first("element");                                 // compare with literal value
+linq::from(array)->first("element");
 linq::from(array)->first([](const std::string& element)
-                        { return element.size() > 2; });            // compare with lambda expression
+                        { return element.size() > 2; });
 // firstOrDefault / lastOrDefault are available only for class container types that
 // are default constructible or basic types
-linq::from(array)->firstOrDefault("element");                        // compare with literal value
+linq::from(array)->firstOrDefault("element");
 linq::from(array)->firstOrDefault([](const std::string& element)
-                                 { return element.size() > 2; });   // compare with lambda expression
+                                 { return element.size() > 2; });
 ```
 
 ❌ Single  
 ❌ ElementAt  
-❌ Any / All  
-❌ Contains  
+✔️ Any / All
+
+```c++
+// any checks for single occurence in container
+linq::from(array)->any("element");
+linq::from(array)->any([](const auto& element){ return element.size() > 2; });
+// all checks if all elements match predicate or literal
+linq::from(array)->all("element");
+linq::from(array)->all([](const auto& element){ return element.size() > 2; });
+```
+
+✔️ Contains  
+Alias to `any`.
+
 ❌ Count
