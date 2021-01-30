@@ -53,7 +53,7 @@ namespace linq
             else
             {
                 // object doesn't exist, and pointer couldn't return empty container
-                throw std::logic_error("LinqObject is invalid.").
+                throw std::logic_error("LinqObject is invalid.");
             }
         }
 
