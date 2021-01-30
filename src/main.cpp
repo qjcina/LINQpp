@@ -19,7 +19,8 @@ int main(int argc, char **argv)
 
     const std::vector<int32_t> someVector = {1, 2, 3, 4};
 
-    const std::vector<int32_t> evenNumbers = linq::from(someVector)->where([](const int32_t &element) { return element % 2 == 0; });
+    auto a = linq::LinqComparable([](const int32_t &element) -> bool { return element % 2 == 0; });
+    const std::vector<int32_t> evenNumbers = linq::from(someVector)->where([](const int32_t &element) -> bool { return element % 2 == 0; });
 
     std::cout << "All numbers: ";
     printVector(someVector);

@@ -53,7 +53,7 @@ namespace linq
             else
             {
                 // object doesn't exist, and pointer couldn't return empty container
-                throw std::logic_error("LinqObject is invalid.").
+                throw std::logic_error("LinqObject is invalid.");
             }
         }
 
@@ -88,10 +88,15 @@ namespace linq
         {
         }
 
+        LinqComparable(const ComparatorType &function)
+            : mComparator(function)
+        {
+        }
+
         // plain lambda
-        template <typename LambdaType, std::enable_if_t<std::is_convertible_v<LambdaType, ComparatorType>, bool> = true>
-        LinqComparable(LambdaType &lambda)
-            : mComparator(lambda)
+        template <typename LambdaType, std::enable_if_t<std::is_convertible_v<LambdaType, ComparatorType> && !std::is_same_v<LambdaType, ComparatorType>, bool> = true>
+        LinqComparable(const LambdaType &lambda)
+            : LinqComparable<ValueType>(static_cast<ComparatorType>(lambda))
         {
         }
 
