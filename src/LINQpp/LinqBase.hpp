@@ -17,6 +17,8 @@ namespace linq
 
     public:
         using ValueType = ContainerType;
+        using ElementType = typename ContainerType::value_type;
+        using Comparator = LinqComparable<ElementType>;
 
         explicit LinqBase(const ContainerType &container)
             : mBaseContainer(container)
@@ -28,8 +30,7 @@ namespace linq
         {
         }
 
-        LinqObjectBase<ContainerType> where(std::function<bool(typename ContainerType::value_type)> selectFunction) const;
-        LinqObjectBase<ContainerType> where(typename ContainerType::value_type selectElement) const;
+        LinqObjectBase<ContainerType> where(const Comparator& comparator) const;
 
         virtual LinqObjectBase<ContainerType> forceEvaluate() const;
 
@@ -43,24 +44,18 @@ namespace linq
     };
 
     template <typename ContainerType>
-    LinqObjectBase<ContainerType> LinqBase<ContainerType>::where(std::function<bool(typename ContainerType::value_type)> selectFunction) const
+    LinqObjectBase<ContainerType> LinqBase<ContainerType>::where(const Comparator& comparator) const
     {
         OutputContainerType outputContainer;
 
         for (typename ContainerType::const_iterator i = mBaseContainer.begin(); mBaseContainer.end() != i; ++i)
         {
-            if (selectFunction(*i))
+            if (comparator(*i))
             {
                 outputContainer.push_back(i);
             }
         }
         return std::make_shared<LinqEntity<ContainerType>>(this->shared_from_this(), outputContainer);
-    }
-
-    template <typename ContainerType>
-    LinqObjectBase<ContainerType> LinqBase<ContainerType>::where(typename ContainerType::value_type selectElement) const
-    {
-        return where([&](const typename ContainerType::value_type &value) { return value == selectElement; });
     }
 
     template <typename ContainerType>

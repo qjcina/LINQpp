@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <variant>
 
 #include "LinqUtils.hpp"
 
@@ -65,6 +66,42 @@ namespace linq
 
             return std::static_pointer_cast<BaseType>(input);
         }
+    };
+
+    template <typename ValueType>
+    class LinqComparable
+    {
+    public:
+        using ComparatorType = std::function<bool(const ValueType &)>;
+
+        // literal value conversion to lambda
+        LinqComparable(const ValueType &literal)
+            : LinqComparable<ValueType>([=](const ValueType &element) { return element == literal; })
+        {
+        }
+
+        // conversion from type different than ValueType
+        template <typename Type,
+                  std::enable_if_t<std::is_convertible_v<Type, ValueType> && !std::is_same_v<ValueType, Type>, bool> = true>
+        LinqComparable(const Type &value)
+            : LinqComparable<ValueType>(static_cast<ValueType>(value))
+        {
+        }
+
+        // plain lambda
+        template <typename LambdaType, std::enable_if_t<std::is_convertible_v<LambdaType, ComparatorType>, bool> = true>
+        LinqComparable(LambdaType &lambda)
+            : mComparator(lambda)
+        {
+        }
+
+        bool operator()(const ValueType &value) const
+        {
+            return mComparator(value);
+        }
+
+    private:
+        const ComparatorType mComparator;
     };
 
     template <typename ContainerType>
