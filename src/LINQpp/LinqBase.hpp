@@ -53,7 +53,7 @@ namespace linq
                   typename LambdaReturnType = std::result_of_t<LambdaType(ElementType)>,
                   typename ReturnContainerType = std::vector<LambdaReturnType>,
                   typename ReturnLinqType = LinqObjectBase<typename ReturnContainerType>>
-        auto select(const LambdaType &builder) const -> ReturnLinqType;
+        ReturnLinqType select(const LambdaType &builder) const;
 
         /** Where operation. 
          *  Filters input container.
