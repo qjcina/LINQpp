@@ -30,9 +30,9 @@ namespace linq
     LinqEntity<ContainerType>::operator ContainerType() const
     {
         ContainerType output;
-        output.reserve(mOutputContainer.size());
+        output.reserve(LinqBase<ContainerType>::mOutputContainer.size());
 
-        for (const auto &elementIterator : mOutputContainer)
+        for (const auto &elementIterator : LinqBase<ContainerType>::mOutputContainer)
         {
             output.push_back(*elementIterator);
         }

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "LinqBase.hpp"
 
 namespace linq
 {

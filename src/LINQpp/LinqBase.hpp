@@ -52,7 +52,7 @@ namespace linq
         template <typename LambdaType,
                   typename LambdaReturnType = std::result_of_t<LambdaType(ElementType)>,
                   typename ReturnContainerType = std::vector<LambdaReturnType>,
-                  typename ReturnLinqType = LinqObjectBase<typename ReturnContainerType>>
+                  typename ReturnLinqType = LinqObjectBase<typename std::vector<LambdaReturnType>>>
         ReturnLinqType select(const LambdaType &builder) const;
 
         /** Where operation. 
@@ -165,7 +165,7 @@ namespace linq
         {
             outputContainer.push_back(builder(**i));
         }
-        return moveFrom(std::move(outputContainer));
+        return std::make_shared<LinqEvaluatedBase<ReturnContainerType>>(std::move(outputContainer));;
     }
 
     template <typename ContainerType>
