@@ -26,11 +26,15 @@ At any point you can evaluate whole expression to create new root or output cont
 
 LINQpp is still in progres, so not all of LINQ query operators are available.
 
-❌ Select  
+✔️ Select  
+
+```c++
+linq::from(array)->select([](const auto& element){ return SomeClass(element, 3); });
+```
 ✔️ Where - filters out not matching elements
 
 ```c++
-linq::from(array)->where("element");                                              // compare with literal value
+linq::from(array)->where("element");                                              // compare with value
 linq::from(array)->where([](const auto& element){ return element.size() > 2; });  // compare with lambda expression
 ```
 
@@ -51,7 +55,7 @@ linq::from(array)->where([](const auto& element){ return element.size() > 2; });
 ✔️ First / FirstOrDefault / Last / LastOrDefault
 
 ```c++
-// first / last throw std::logic_error when element is not found
+// first / last throws std::logic_error when element is not found
 linq::from(array)->first("element");
 linq::from(array)->first([](const std::string& element)
                         { return element.size() > 2; });
@@ -70,7 +74,7 @@ linq::from(array)->firstOrDefault([](const std::string& element)
 // any checks for single occurence in container
 linq::from(array)->any("element");
 linq::from(array)->any([](const auto& element){ return element.size() > 2; });
-// all checks if all elements match predicate or literal
+// all checks if all elements match predicate or value
 linq::from(array)->all("element");
 linq::from(array)->all([](const auto& element){ return element.size() > 2; });
 ```

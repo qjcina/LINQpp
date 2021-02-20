@@ -11,13 +11,13 @@ namespace linq
         explicit LinqEvaluatedBase(const ContainerType &container)
             : LinqBase<ContainerType>(mBaseContainerCopy, true), mBaseContainerCopy(container)
         {
-            LinqBase<ContainerType>::buildOutputContainer(mBaseContainerCopy);
+            LinqBase<ContainerType>::buildOutputContainer();
         }
 
         explicit LinqEvaluatedBase(ContainerType &&container)
             : LinqBase<ContainerType>(mBaseContainerCopy, true), mBaseContainerCopy(std::move(container))
         {
-            LinqBase<ContainerType>::buildOutputContainer(mBaseContainerCopy);
+            LinqBase<ContainerType>::buildOutputContainer();
         }
 
     private:

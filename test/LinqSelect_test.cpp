@@ -96,17 +96,17 @@ TEST(LinqSelectTest, Select_Where_First_ExpectFirstMatching)
 
 TEST(LinqSelectTest, Select_Where_ExpectProperSizeForBigStructure)
 {
-    std::vector<int32_t> someVector;
+    std::vector<size_t> someVector;
     std::generate_n(std::back_inserter(someVector), 1000, [&] {
         return someVector.size();
     });
 
     std::vector output = linq::from(someVector)
-                      ->where([](const auto &element) { return element % 2 == 0; })
-                      ->select([](const auto &element) {
-                          return SampleClass(element + 2);
-                      })
-                      ->get();
+                             ->where([](const auto &element) { return element % 2 == 0; })
+                             ->select([](const auto &element) {
+                                 return SampleClass(static_cast<int32_t>(element) + 2);
+                             })
+                             ->get();
 
     EXPECT_EQ(someVector.size(), 1000);
     EXPECT_EQ(output.size(), 500);

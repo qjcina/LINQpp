@@ -71,3 +71,34 @@ TEST(LinqWhereTest, WhereValue_Int_ExpectFilteredOutResult)
     ASSERT_EQ(outputVector.size(), 1);
     EXPECT_THAT(outputVector, testing::ElementsAre(3));
 }
+
+TEST(LinqSelectTest, Where_ExpectWorkingSelfAssignment)
+{
+    std::vector<size_t> someVector;
+    std::generate_n(std::back_inserter(someVector), 1000, [&] {
+        return someVector.size();
+    });
+
+    ASSERT_EQ(someVector.size(), 1000);
+    someVector = linq::from(someVector)
+                     ->where([](const auto &element) { return element % 2 == 0; })
+                     ->get();
+
+    EXPECT_EQ(someVector.size(), 500);
+}
+
+TEST(LinqSelectTest, Where_Chain_ExpectChainingWorking)
+{
+    std::vector<size_t> someVector;
+    std::generate_n(std::back_inserter(someVector), 1000, [&] {
+        return someVector.size();
+    });
+
+    ASSERT_EQ(someVector.size(), 1000);
+    someVector = linq::from(someVector)
+                     ->where([](const auto &element) { return element % 2 == 0; })
+                     ->where([](const auto &element) { return element % 3 == 0; })
+                     ->get();
+
+    EXPECT_EQ(someVector.size(), 167);
+}
