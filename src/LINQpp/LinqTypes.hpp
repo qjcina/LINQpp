@@ -57,11 +57,6 @@ namespace linq
             }
         }
 
-        operator std::initializer_list<typename BaseType::ValueType>() const 
-        {
-           return this->operator ContainerType(); 
-        }
-
     private:
         template <typename I>
         std::shared_ptr<BaseType> castBaseType(const std::shared_ptr<I> &input)
