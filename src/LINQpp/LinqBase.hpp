@@ -51,7 +51,7 @@ namespace linq
          */
         template <typename LambdaType,
                   typename LambdaReturnType = std::result_of_t<LambdaType(ElementType)>,
-                  typename ReturnContainerType = std::vector<LambdaReturnType>,
+                  typename ReturnContainerType = std::list<LambdaReturnType>,
                   typename ReturnLinqType = LinqObjectBase<typename ReturnContainerType>>
         ReturnLinqType select(const LambdaType &builder) const;
 
