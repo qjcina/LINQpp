@@ -9,25 +9,15 @@ namespace linq
     class LinqEntity : public LinqBase<ContainerType>
     {
         using OutputContainerType = typename LinqBase<ContainerType>::OutputContainerType;
-
     public:
-        template <typename TestContainerType = ContainerType, std::enable_if_t<traits::IsHandledContainer<TestContainerType>::value, bool> = true>
-        LinqEntity(const ContainerType &baseContainer, const OutputContainerType &outputContainer)
-            : LinqBase<ContainerType>(baseContainer), mOutputContainer(outputContainer)
-        {
-        }
-
-        LinqEntity(const LinqObject<const LinqBase<ContainerType>> &parent, const OutputContainerType &outputContainer)
-            : LinqBase<ContainerType>(parent), mOutputContainer(outputContainer)
+        LinqEntity(const LinqObject<const LinqBase<ContainerType>> &parent, OutputContainerType&& outputContainer)
+            : LinqBase<ContainerType>(parent, std::move(outputContainer))
         {
         }
 
         LinqObjectBase<ContainerType> forceEvaluate() const override;
 
         operator ContainerType() const override;
-
-    private:
-        const OutputContainerType mOutputContainer;
     };
 
     template <typename ContainerType>

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "LinqBase.hpp"
+
 namespace linq
 {
     template <typename ContainerType>
@@ -7,8 +9,15 @@ namespace linq
     {
     public:
         explicit LinqEvaluatedBase(const ContainerType &container)
-            : LinqBase<ContainerType>(mBaseContainerCopy), mBaseContainerCopy(container)
+            : LinqBase<ContainerType>(mBaseContainerCopy, true), mBaseContainerCopy(container)
         {
+            LinqBase<ContainerType>::buildOutputContainer(mBaseContainerCopy);
+        }
+
+        explicit LinqEvaluatedBase(ContainerType &&container)
+            : LinqBase<ContainerType>(mBaseContainerCopy, true), mBaseContainerCopy(std::move(container))
+        {
+            LinqBase<ContainerType>::buildOutputContainer(mBaseContainerCopy);
         }
 
     private:

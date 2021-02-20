@@ -20,4 +20,10 @@ namespace linq
         return std::make_shared<LinqEvaluatedBase<ContainerType>>(container);
     }
 
+    template <typename ContainerType>
+    auto moveFrom(ContainerType&& container) -> linq::LinqObjectBase<ContainerType>
+    {
+        return std::make_shared<LinqEvaluatedBase<ContainerType>>(std::move(container));
+    }
+
 }; // namespace linq

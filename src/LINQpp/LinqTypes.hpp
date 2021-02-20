@@ -57,6 +57,11 @@ namespace linq
             }
         }
 
+        operator std::initializer_list<typename BaseType::ValueType>() const 
+        {
+           return this->operator ContainerType(); 
+        }
+
     private:
         template <typename I>
         std::shared_ptr<BaseType> castBaseType(const std::shared_ptr<I> &input)
@@ -103,6 +108,13 @@ namespace linq
         bool operator()(const ValueType &value) const
         {
             return mComparator(value);
+        }
+
+        template<typename IteratorType, std::enable_if_t<std::is_same_v<ValueType, typename IteratorType::value_type> 
+                                                        && !std::is_same_v<ValueType, IteratorType>, bool> = true>
+        bool operator()(const IteratorType &value) const
+        {
+            return mComparator(*value);
         }
 
     private:
