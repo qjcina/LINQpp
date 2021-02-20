@@ -61,7 +61,7 @@ namespace linq
         template <typename I>
         std::shared_ptr<BaseType> castBaseType(const std::shared_ptr<I> &input)
         {
-            if constexpr (std::is_same_v<I, BaseType>())
+            if constexpr (std::is_same_v<I, BaseType>)
                 return input;
 
             return std::static_pointer_cast<BaseType>(input);
