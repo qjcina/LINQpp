@@ -165,7 +165,7 @@ namespace linq
         {
             outputContainer.push_back(builder(**i));
         }
-        return moveFrom(std::move(outputContainer));
+        return return std::make_shared<LinqEvaluatedBase<ContainerType>>(std::move(outputContainer));;
     }
 
     template <typename ContainerType>
