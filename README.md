@@ -82,4 +82,10 @@ linq::from(array)->all([](const auto& element){ return element.size() > 2; });
 ✔️ Contains  
 Alias to `any`.
 
-❌ Count
+✔️ Count
+
+```c++
+// counts all occurences in a container
+linq::from(array)->count(3);
+linq::from(array)->count([](const auto& element){ return element.size() > 3; });
+```

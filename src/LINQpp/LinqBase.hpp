@@ -6,6 +6,7 @@
 #include <functional>
 #include <algorithm>
 #include <list>
+#include <numeric>
 
 namespace linq
 {
@@ -110,6 +111,12 @@ namespace linq
          * \param comparator Lambda or value to compare all elements with.
          */
         bool contains(const Comparator &comparator) const;
+
+        /** Count operation.
+         *  Returns number of elements matching comparator.
+         * \param comparator Lambda or value to compare all elements with.
+         */
+        size_t count(const Comparator &comparator) const;
 
         /** Evaluates all output iterators. 
          *  This method should be used when you want to modify base 
@@ -244,6 +251,17 @@ namespace linq
     bool LinqBase<ContainerType, PreferredReturnType>::contains(const Comparator &comparator) const
     {
         return any(comparator);
+    }
+
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    size_t LinqBase<ContainerType, PreferredReturnType>::count(const Comparator &comparator) const
+    {
+        return std::accumulate(mOutputContainer.begin(), mOutputContainer.end(), static_cast<size_t>(0),
+                               [&](const size_t accumulator, const auto &element) {
+                                   if (comparator(element))
+                                       return accumulator + 1;
+                                   return accumulator;
+                               });
     }
 
     template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
