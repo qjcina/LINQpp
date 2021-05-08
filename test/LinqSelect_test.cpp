@@ -111,3 +111,20 @@ TEST(LinqSelectTest, Select_Where_ExpectProperSizeForBigStructure)
     EXPECT_EQ(someVector.size(), 1000);
     EXPECT_EQ(output.size(), 500);
 }
+
+TEST(LinqSelectTest, Select_Where_ExpectListContainerWorking)
+{
+    std::list<size_t> someList;
+    std::generate_n(std::back_inserter(someList), 1000, [&] {
+        return someList.size();
+    });
+
+    auto output = linq::from(someList)
+                             ->where([](const auto &element) { return element % 2 == 0; })
+                             ->select([](const auto &element) {
+                                 return SampleClass(static_cast<int32_t>(element) + 2);
+                             })
+                             ->get();
+
+    EXPECT_EQ(typeid(std::list<SampleClass>), typeid(output));
+}

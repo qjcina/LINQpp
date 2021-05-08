@@ -13,11 +13,14 @@ namespace linq
         class LinqEvaluatedBase;
     } // namespace internal
 
-    template <typename ContainerType>
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
     class LinqEntity;
 
-    template <typename ContainerType>
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
     class LinqBase;
+
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    class LinqEvaluatedBase;
 
     template <typename BaseType>
     class LinqObject : public std::shared_ptr<BaseType>
@@ -116,7 +119,7 @@ namespace linq
         const ComparatorType mComparator;
     };
 
-    template <typename ContainerType>
-    using LinqObjectBase = LinqObject<LinqBase<ContainerType>>;
+    template <typename ContainerType, template <typename ValueType> typename PreferredReturnType>
+    using LinqObjectBase = LinqObject<LinqBase<ContainerType, PreferredReturnType>>;
 
 } // namespace linq

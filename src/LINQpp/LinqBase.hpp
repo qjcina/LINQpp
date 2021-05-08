@@ -12,9 +12,11 @@ namespace linq
     /** Base class for all LINQpp objects.
      *  Contains all methods required for modifying data and container operations.
      */
-    template <typename ContainerType>
-    class LinqBase : public std::enable_shared_from_this<LinqBase<ContainerType>>
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    class LinqBase : public std::enable_shared_from_this<LinqBase<ContainerType, PreferredReturnType>>
     {
+        static_assert(linq::traits::IsHandledContainer<ContainerType>::value, "Provided container needs to have value_type and push_back function.");
+
     protected:
         using ContainerValueType = typename ContainerType::value_type;
         using OutputContainerType = std::list<typename ContainerType::const_iterator>;
@@ -39,7 +41,7 @@ namespace linq
          * \param parent Reference to another LINQpp object
          * \param outputContainer Already created output container
          */
-        explicit LinqBase(const LinqObject<const LinqBase<ContainerType>> &parent, OutputContainerType &&outputContainer)
+        explicit LinqBase(const LinqObject<const LinqBase<ContainerType, PreferredReturnType>> &parent, OutputContainerType &&outputContainer)
             : mBaseContainer(parent->mBaseContainer), mParent(parent), mOutputContainer(std::move(outputContainer))
         {
         }
@@ -51,15 +53,15 @@ namespace linq
          */
         template <typename LambdaType,
                   typename LambdaReturnType = std::result_of_t<LambdaType(ElementType)>,
-                  typename ReturnContainerType = std::vector<LambdaReturnType>,
-                  typename ReturnLinqType = LinqObjectBase<typename std::vector<LambdaReturnType>>>
+                  typename ReturnContainerType = PreferredReturnType<LambdaReturnType>,
+                  typename ReturnLinqType = LinqObjectBase<typename PreferredReturnType<LambdaReturnType>, PreferredReturnType>>
         ReturnLinqType select(const LambdaType &builder) const;
 
         /** Where operation. 
          *  Filters input container.
          * \param comparator Lambda or value to compare all elements with.
          */
-        LinqObjectBase<ContainerType> where(const Comparator &comparator) const;
+        LinqObjectBase<ContainerType, PreferredReturnType> where(const Comparator &comparator) const;
 
         /** First operation. 
          *  Returns first element that matches comparator.
@@ -113,7 +115,7 @@ namespace linq
          *  This method should be used when you want to modify base 
          *  container in-between LINQpp operations.
          */
-        virtual LinqObjectBase<ContainerType> forceEvaluate() const;
+        virtual LinqObjectBase<ContainerType, PreferredReturnType> forceEvaluate() const;
 
         /** Casts LinqBase to ContainerType.
          */
@@ -148,28 +150,29 @@ namespace linq
             }
         }
 
-        const std::shared_ptr<const LinqBase<ContainerType>> mParent;
+        const std::shared_ptr<const LinqBase<ContainerType, PreferredReturnType>> mParent;
         const ContainerType &mBaseContainer;
         OutputContainerType mOutputContainer;
     };
 
-    template <typename ContainerType>
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
     template <typename LambdaType,
               typename LambdaReturnType,
               typename ReturnContainerType,
               typename ReturnLinqType>
-    ReturnLinqType LinqBase<ContainerType>::select(const LambdaType &builder) const
+    ReturnLinqType LinqBase<ContainerType, PreferredReturnType>::select(const LambdaType &builder) const
     {
         ReturnContainerType outputContainer;
         for (auto i = mOutputContainer.begin(); mOutputContainer.end() != i; ++i)
         {
             outputContainer.push_back(builder(**i));
         }
-        return std::make_shared<LinqEvaluatedBase<ReturnContainerType>>(std::move(outputContainer));;
+        return std::make_shared<LinqEvaluatedBase<ReturnContainerType, PreferredReturnType>>(std::move(outputContainer));
+        ;
     }
 
-    template <typename ContainerType>
-    LinqObjectBase<ContainerType> LinqBase<ContainerType>::where(const Comparator &comparator) const
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    LinqObjectBase<ContainerType, PreferredReturnType> LinqBase<ContainerType, PreferredReturnType>::where(const Comparator &comparator) const
     {
         OutputContainerType outputContainer;
         for (auto i = mOutputContainer.begin(); mOutputContainer.end() != i; ++i)
@@ -180,11 +183,11 @@ namespace linq
             }
         }
 
-        return std::make_shared<LinqEntity<ContainerType>>(this->shared_from_this(), std::move(outputContainer));
+        return std::make_shared<LinqEntity<ContainerType, PreferredReturnType>>(this->shared_from_this(), std::move(outputContainer));
     }
 
-    template <typename ContainerType>
-    const typename LinqBase<ContainerType>::ElementType &LinqBase<ContainerType>::first(const Comparator &comparator) const
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    const typename LinqBase<ContainerType, PreferredReturnType>::ElementType &LinqBase<ContainerType, PreferredReturnType>::first(const Comparator &comparator) const
     {
         const auto foundElement = std::find_if(mOutputContainer.begin(), mOutputContainer.end(), comparator);
         if (foundElement != mOutputContainer.end())
@@ -193,9 +196,9 @@ namespace linq
         throw std::logic_error("LINQpp could not find element.");
     }
 
-    template <typename ContainerType>
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
     template <typename ReturnType, std::enable_if_t<std::is_default_constructible_v<ReturnType>, bool>>
-    ReturnType LinqBase<ContainerType>::firstOrDefault(const Comparator &comparator) const
+    ReturnType LinqBase<ContainerType, PreferredReturnType>::firstOrDefault(const Comparator &comparator) const
     {
         const auto foundElement = std::find_if(mOutputContainer.begin(), mOutputContainer.end(), comparator);
         if (foundElement != mOutputContainer.end())
@@ -204,8 +207,8 @@ namespace linq
             return ElementType();
     }
 
-    template <typename ContainerType>
-    const typename LinqBase<ContainerType>::ElementType &LinqBase<ContainerType>::last(const Comparator &comparator) const
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    const typename LinqBase<ContainerType, PreferredReturnType>::ElementType &LinqBase<ContainerType, PreferredReturnType>::last(const Comparator &comparator) const
     {
         const auto foundElement = std::find_if(mOutputContainer.rbegin(), mOutputContainer.rend(), comparator);
         if (foundElement != mOutputContainer.rend())
@@ -214,9 +217,9 @@ namespace linq
         throw std::logic_error("LINQpp could not find element.");
     }
 
-    template <typename ContainerType>
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
     template <typename ReturnType, std::enable_if_t<std::is_default_constructible_v<ReturnType>, bool>>
-    ReturnType LinqBase<ContainerType>::lastOrDefault(const Comparator &comparator) const
+    ReturnType LinqBase<ContainerType, PreferredReturnType>::lastOrDefault(const Comparator &comparator) const
     {
         const auto foundElement = std::find_if(mOutputContainer.rbegin(), mOutputContainer.rend(), comparator);
         if (foundElement != mOutputContainer.rend())
@@ -225,33 +228,33 @@ namespace linq
             return ElementType();
     }
 
-    template <typename ContainerType>
-    bool LinqBase<ContainerType>::any(const Comparator &comparator) const
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    bool LinqBase<ContainerType, PreferredReturnType>::any(const Comparator &comparator) const
     {
         return std::any_of(mOutputContainer.begin(), mOutputContainer.end(), comparator);
     }
 
-    template <typename ContainerType>
-    bool LinqBase<ContainerType>::all(const Comparator &comparator) const
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    bool LinqBase<ContainerType, PreferredReturnType>::all(const Comparator &comparator) const
     {
         return std::all_of(mOutputContainer.begin(), mOutputContainer.end(), comparator);
     }
 
-    template <typename ContainerType>
-    bool LinqBase<ContainerType>::contains(const Comparator &comparator) const
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    bool LinqBase<ContainerType, PreferredReturnType>::contains(const Comparator &comparator) const
     {
         return any(comparator);
     }
 
-    template <typename ContainerType>
-    LinqObjectBase<ContainerType> LinqBase<ContainerType>::forceEvaluate() const
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    LinqObjectBase<ContainerType, PreferredReturnType> LinqBase<ContainerType, PreferredReturnType>::forceEvaluate() const
     {
         // nothing to evaluate
-        return std::make_shared<LinqBase<ContainerType>>(*this);
+        return std::make_shared<LinqBase<ContainerType, PreferredReturnType>>(*this);
     }
 
-    template <typename ContainerType>
-    LinqBase<ContainerType>::operator ContainerType() const
+    template <typename ContainerType, template <typename ValueType, typename... Args> typename PreferredReturnType>
+    LinqBase<ContainerType, PreferredReturnType>::operator ContainerType() const
     {
         return mBaseContainer;
     }

@@ -11,28 +11,37 @@ namespace linq
     /** LINQpp entry point. Creates new LinqObject that references proviced container.
      * \param container Handled container
      */
-    template <typename ContainerType>
-    auto from(const ContainerType &container) -> linq::LinqObjectBase<ContainerType>
+    template <template <typename X, typename... T> typename ContainerOuterType,
+              typename ContainerValueType,
+              typename... Args,
+              typename ContainerType = ContainerOuterType<ContainerValueType, Args...>>
+    auto from(const ContainerOuterType<ContainerValueType, Args...> &container) -> linq::LinqObjectBase<ContainerType, ContainerOuterType>
     {
-        return std::make_shared<LinqBase<ContainerType>>(container);
+        return std::make_shared<LinqBase<ContainerType, ContainerOuterType>>(container);
     }
 
     /** LINQpp entry point. Creates new LinqObject that copies provided container.
      * \param container Handled container
      */
-    template <typename ContainerType>
-    auto copyFrom(const ContainerType &container) -> linq::LinqObjectBase<ContainerType>
+    template <template <typename X, typename... T> typename ContainerOuterType,
+              typename ContainerValueType,
+              typename... Args,
+              typename ContainerType = ContainerOuterType<ContainerValueType, Args...>>
+    auto copyFrom(const ContainerOuterType<ContainerValueType, Args...> container) -> linq::LinqObjectBase<ContainerType, ContainerOuterType>
     {
-        return std::make_shared<LinqEvaluatedBase<ContainerType>>(container);
+        return std::make_shared<LinqEvaluatedBase<ContainerType, ContainerOuterType>>(container);
     }
 
     /** LINQpp entry point. Creates new LinqObject that moves provided container.
      * \param container Handled container
      */
-    template <typename ContainerType>
-    auto moveFrom(ContainerType &&container) -> linq::LinqObjectBase<ContainerType>
+    template <template <typename X, typename... T> typename ContainerOuterType,
+              typename ContainerValueType,
+              typename... Args,
+              typename ContainerType = ContainerOuterType<ContainerValueType, Args...>>
+    auto moveFrom(ContainerOuterType<ContainerValueType, Args...> &&container) -> linq::LinqObjectBase<ContainerType, ContainerOuterType>
     {
-        return std::make_shared<LinqEvaluatedBase<ContainerType>>(std::move(container));
+        return std::make_shared<LinqEvaluatedBase<ContainerType, ContainerOuterType>>(std::move(container));
     }
 
 }; // namespace linq
