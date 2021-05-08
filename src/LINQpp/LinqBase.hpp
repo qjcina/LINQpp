@@ -54,7 +54,7 @@ namespace linq
         template <typename LambdaType,
                   typename LambdaReturnType = std::result_of_t<LambdaType(ElementType)>,
                   typename ReturnContainerType = PreferredReturnType<LambdaReturnType>,
-                  typename ReturnLinqType = LinqObjectBase<typename PreferredReturnType<LambdaReturnType>, PreferredReturnType>>
+                  typename ReturnLinqType = LinqObjectBase<ReturnContainerType, PreferredReturnType>>
         ReturnLinqType select(const LambdaType &builder) const;
 
         /** Where operation. 
